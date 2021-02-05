@@ -1,19 +1,25 @@
 package com.target.targetcasestudy.ui
 
 import android.view.LayoutInflater
-import android.view.View
+import androidx.recyclerview.widget.ListAdapter
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.target.targetcasestudy.R
+import com.target.targetcasestudy.data.DealItem
 import com.target.targetcasestudy.data.StaticData
+import com.target.targetcasestudy.databinding.DealListItemBinding
 
-class DealItemAdapter : RecyclerView.Adapter<DealItemViewHolder>() {
+class DealItemAdapter(private val clickListener: DealItemListener) :
+      ListAdapter<DealItem, DealItemViewHolder>(
+        RecentDiffCallback()
+){
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealItemViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    val view = inflater.inflate(R.layout.deal_list_item, parent, false)
-    return DealItemViewHolder(view)
+    val binding = DealListItemBinding.inflate(inflater, parent, false)
+    return DealItemViewHolder(binding)
   }
 
   override fun getItemCount(): Int {
@@ -22,11 +28,31 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemViewHolder>() {
 
   override fun onBindViewHolder(viewHolder: DealItemViewHolder, position: Int) {
     val item = StaticData.deals[position]
+    viewHolder.bind((item), clickListener)
     viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_title).text = item.title
     viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_price).text = item.price
   }
 }
 
-class DealItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//Listener to handle item click actions
+class DealItemListener(val clickListener: (deal: DealItem) -> Unit) {
+  fun onClick(deal: DealItem) = clickListener(deal)
+}
 
+class DealItemViewHolder(val binding: DealListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: DealItem, clickListener: DealItemListener){
+      binding.deal = item
+      binding.clickListener = clickListener
+      binding.executePendingBindings()
+    }
+}
+
+class RecentDiffCallback : DiffUtil.ItemCallback<DealItem>() {
+  override fun areItemsTheSame(oldItem: DealItem, newItem: DealItem): Boolean {
+    return oldItem.id == newItem.id
+  }
+
+  override fun areContentsTheSame(oldItem: DealItem, newItem: DealItem): Boolean {
+    return oldItem == newItem
+  }
 }

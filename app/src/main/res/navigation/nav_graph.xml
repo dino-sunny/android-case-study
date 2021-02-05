@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_dealItemFragment_to_dealListFragment"
             app:destination="@id/dealListFragment" />
+        <argument
+            android:name="Deal"
+            app:argType="string" />
     </fragment>
 </navigation>
