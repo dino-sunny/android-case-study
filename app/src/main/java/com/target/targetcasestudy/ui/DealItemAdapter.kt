@@ -3,12 +3,9 @@ package com.target.targetcasestudy.ui
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.ListAdapter
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.target.targetcasestudy.R
 import com.target.targetcasestudy.data.DealItem
-import com.target.targetcasestudy.data.StaticData
 import com.target.targetcasestudy.databinding.DealListItemBinding
 
 class DealItemAdapter(private val clickListener: DealItemListener) :
@@ -22,15 +19,9 @@ class DealItemAdapter(private val clickListener: DealItemListener) :
     return DealItemViewHolder(binding)
   }
 
-  override fun getItemCount(): Int {
-    return StaticData.deals.size
-  }
-
   override fun onBindViewHolder(viewHolder: DealItemViewHolder, position: Int) {
-    val item = StaticData.deals[position]
+    val item = getItem(position)
     viewHolder.bind((item), clickListener)
-    viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_title).text = item.title
-    viewHolder.itemView.findViewById<TextView>(R.id.deal_list_item_price).text = item.price
   }
 }
 

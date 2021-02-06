@@ -41,6 +41,16 @@ android {
   kotlinOptions {
     jvmTarget = '1.8'
   }
+  productFlavors {
+    //Build to get release apk
+    production {
+      buildConfigField 'String', 'BASEURL', '"https://api.target.com/mobile_case_study_deals/v1/"'
+    }
+    //Build to get developer apk
+    debuging {
+      buildConfigField 'String', 'BASEURL', '"https://api.target.com/mobile_case_study_deals/v1/"'
+    }
+  }
 }
 
 dependencies {
