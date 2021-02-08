@@ -22,7 +22,7 @@ class DealItemAdapter(private val clickListener: DealItemListener) :
 
   override fun onBindViewHolder(viewHolder: DealItemViewHolder, position: Int) {
     val item = getItem(position)
-    setGlideImage(item.image_url, viewHolder.binding.imageView3)
+    setGlideImage(item.image_url, viewHolder.binding.dealImage)
     viewHolder.bind((item), clickListener)
   }
 }

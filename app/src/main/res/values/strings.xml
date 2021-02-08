@@ -11,8 +11,9 @@
   <string name="cancel">Cancel</string>
   <string name="credit_card_number_hint">Credit card number</string>
     <string name="or">or</string>
-  <string name="ship">Ship</string>
+  <string name="ship">ship</string>
   <string name="product_image">product image</string>
   <string name="add_to_list">Add to List</string>
   <string name="add_to_cart">Add to Cart</string>
+  <string name="no_internet_text">No Internet Connection</string>
 </resources>

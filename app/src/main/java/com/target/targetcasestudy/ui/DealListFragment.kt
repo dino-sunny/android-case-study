@@ -10,12 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.target.targetcasestudy.R
 import com.target.targetcasestudy.data.DealItem
-import com.target.targetcasestudy.data.Products
 
 import com.target.targetcasestudy.databinding.FragmentDealListBinding
 import com.target.targetcasestudy.utilities.NetworkCheck
-
 
 class DealListFragment : Fragment() {
   private lateinit var binding : FragmentDealListBinding
@@ -36,6 +35,7 @@ class DealListFragment : Fragment() {
     return binding.root
   }
 
+  //Calling api in 'onStart' to load the list before user interacting with UI
   override fun onStart() {
     super.onStart()
     getDeals()
@@ -45,15 +45,13 @@ class DealListFragment : Fragment() {
   //network error message
   private fun getDeals() {
     if (NetworkCheck.isOnline(requireContext())) {
-//      noInternetLayout.visibility = View.GONE
       viewModel.getDeals()
+    } else{
+      Toast.makeText(context,getString(R.string.no_internet_text),Toast.LENGTH_SHORT).show()
     }
-//    else{
-//      noInternetLayout.visibility = View.VISIBLE
-//    }
   }
 
-
+  //Observing live data
   private fun setObservers() {
     //Navigate action handling
     viewModel.eventNavigateDeal.observe(viewLifecycleOwner) { post ->
@@ -68,6 +66,7 @@ class DealListFragment : Fragment() {
     }
   }
 
+  //Set Adapter and Item Click listener
   private fun setListAdapter() {
     binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     dealsAdapter = DealItemAdapter(DealItemListener {deal: DealItem ->
@@ -75,6 +74,7 @@ class DealListFragment : Fragment() {
     })
     binding.recyclerView.adapter = dealsAdapter
   }
+
   //Navigate to Details with post data
   private fun navigateToDetails(deal: DealItem) {
     val mData = Gson().toJson(deal)
