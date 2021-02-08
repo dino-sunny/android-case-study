@@ -20,7 +20,7 @@ import com.target.targetcasestudy.utilities.NetworkCheck
 class DealListFragment : Fragment() {
   private lateinit var binding : FragmentDealListBinding
   private lateinit var viewModel: DealListViewModel
-private lateinit var dealsAdapter: DealItemAdapter
+  private lateinit var dealsAdapter: DealItemAdapter
 
   override fun onCreateView(
           inflater: LayoutInflater, container: ViewGroup?,
