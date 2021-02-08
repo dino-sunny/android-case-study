@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.target.targetcasestudy.data.DealItem
 import com.target.targetcasestudy.databinding.DealListItemBinding
+import com.target.targetcasestudy.utilities.ImageHandler.setGlideImage
 
 class DealItemAdapter(private val clickListener: DealItemListener) :
       ListAdapter<DealItem, DealItemViewHolder>(
@@ -21,6 +22,7 @@ class DealItemAdapter(private val clickListener: DealItemListener) :
 
   override fun onBindViewHolder(viewHolder: DealItemViewHolder, position: Int) {
     val item = getItem(position)
+    setGlideImage(item.image_url, viewHolder.binding.imageView3)
     viewHolder.bind((item), clickListener)
   }
 }

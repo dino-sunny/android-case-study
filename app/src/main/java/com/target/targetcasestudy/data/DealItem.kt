@@ -8,7 +8,8 @@ data class DealItem(
   var description: String,
   var price: String,
   var aisle: String,
-  var regular_price: Price
+  var regular_price: Price,
+  var image_url: String
 )
 data class Price(
   var amount_in_cents: Int,
