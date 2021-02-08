@@ -16,4 +16,5 @@
   <string name="add_to_list">Add to List</string>
   <string name="add_to_cart">Add to Cart</string>
   <string name="no_internet_text">No Internet Connection</string>
+  <string name="reg">Reg:</string>
 </resources>
