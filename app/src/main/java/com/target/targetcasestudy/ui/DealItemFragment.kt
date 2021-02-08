@@ -24,16 +24,14 @@ class DealItemFragment : Fragment() {
   ): View {
     // Inflate the layout for this fragment
     binding = FragmentDealItemBinding.inflate(inflater,container,false)
-    binding.dealRegularPrice.showStrikeThrough(true)
+    cutRegularPrice()
     return  binding.root
-
   }
-//
-//  fun TextView.showStrikeThrough(show: Boolean) {
-//    paintFlags =
-//      if (show) paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-//      else paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-//  }
+
+  //
+  private fun cutRegularPrice() {
+    binding.dealRegularPrice.showStrikeThrough(true)
+  }
 
   override fun onStart() {
     super.onStart()

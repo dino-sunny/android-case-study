@@ -13,8 +13,8 @@
     <string name="or">or</string>
   <string name="ship">ship</string>
   <string name="product_image">product image</string>
-  <string name="add_to_list">Add to List</string>
-  <string name="add_to_cart">Add to Cart</string>
+  <string name="add_to_list">add to list</string>
+  <string name="add_to_cart">add to cart</string>
   <string name="no_internet_text">No Internet Connection</string>
   <string name="reg">Reg:</string>
 </resources>
