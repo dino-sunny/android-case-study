@@ -23,8 +23,8 @@ package com.target.targetcasestudy.data
  */
 fun validateCreditCard(creditCardNumber: String): Boolean {
   //creating a new array with credit card numbers
-  if (creditCardNumber.isNotEmpty()
-          && creditCardNumber.length>= 13 && creditCardNumber.length<=19 && isNumber(creditCardNumber)) {
+  if (creditCardNumber.isNotEmpty() &&
+          creditCardNumber.length>= 13 && creditCardNumber.length<=19 && isNumber(creditCardNumber)) {
     val cardNumbers: MutableList<String> = ArrayList()
     for (index in creditCardNumber.indices) {
       cardNumbers.add(creditCardNumber[index].toString())
@@ -48,8 +48,4 @@ fun validateCreditCard(creditCardNumber: String): Boolean {
 }
 
 //check a given string is numeric
-fun isNumber(str: String) = try { str.toDouble()
-  true
-} catch (e: NumberFormatException) {
-  false
-}
+fun isNumber(str: String) = str.matches("-?\\d+(\\.\\d+)?".toRegex())

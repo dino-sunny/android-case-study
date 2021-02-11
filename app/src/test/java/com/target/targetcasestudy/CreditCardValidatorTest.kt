@@ -1,5 +1,6 @@
 package com.target.targetcasestudy
 
+import com.target.targetcasestudy.data.isNumber
 import com.target.targetcasestudy.data.validateCreditCard
 import org.junit.Assert
 import org.junit.Test
@@ -17,6 +18,20 @@ class CreditCardValidatorTest {
     Assert.assertTrue(
       "valid credit card number should yield true",
       validateCreditCard("4539976741512043")
+    )
+  }
+  @Test
+  fun `is string is number`() {
+    Assert.assertTrue(
+            "string is a number",
+            isNumber("12")
+    )
+  }
+  @Test
+  fun `is string not is number`() {
+    Assert.assertFalse(
+            "string is not a number",
+            isNumber("TA)&09")
     )
   }
 }
