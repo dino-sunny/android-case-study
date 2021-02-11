@@ -46,19 +46,30 @@ class DealListFragment : Fragment() {
   private fun getDeals() {
     if (NetworkCheck.isOnline(requireContext())) {
       viewModel.getDeals()
+      binding.loader.visibility = View.VISIBLE
     } else{
-      Toast.makeText(context,getString(R.string.no_internet_text),Toast.LENGTH_SHORT).show()
+      binding.noInternet.visibility = View.VISIBLE
+      binding.retryButton.visibility = View.VISIBLE
     }
   }
 
   //Observing live data
   private fun setObservers() {
+    viewModel.eventRetry.observe(viewLifecycleOwner, { isClicked ->
+      if (isClicked) {
+        getDeals()
+        viewModel.onRetryClicked()
+      }
+    })
     //Navigate action handling
     viewModel.eventNavigateDeal.observe(viewLifecycleOwner) { post ->
       post?.let { navigateToDetails(post)}
     }
     viewModel.responsePosts.observe(viewLifecycleOwner) {Products->
       Products?.let { list ->
+        binding.loader.visibility = View.INVISIBLE
+        binding.noInternet.visibility = View.INVISIBLE
+        binding.retryButton.visibility = View.INVISIBLE
         if (!list.products.isNullOrEmpty()) {
           dealsAdapter.submitList(Products.products)
         }

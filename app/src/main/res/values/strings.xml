@@ -16,4 +16,5 @@
   <string name="reg">Reg:</string>
     <string name="DEAL">Deal</string>
   <string name="valid_message">Entered credit card number is valid</string>
+    <string name="retry">Retry</string>
 </resources>

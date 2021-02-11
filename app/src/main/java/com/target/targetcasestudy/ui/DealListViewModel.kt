@@ -17,11 +17,22 @@ class DealListViewModel : ViewModel(){
     private var postResponse =  MutableLiveData<Products>()
     val responsePosts: LiveData<Products> get() = postResponse
 
+    private val _eventRetry = MutableLiveData<Boolean>()
+    val eventRetry: LiveData<Boolean>
+        get() = _eventRetry
+
     fun onDealClicked(deal:DealItem){
         _navigateToDeal.value = deal
     }
     fun onDealNavigated() {
         _navigateToDeal.value = null
+    }
+
+    fun onRetryClick(){
+        _eventRetry.value = true
+    }
+    fun onRetryClicked() {
+        _eventRetry.value = false
     }
 
     //Get Posts from API
