@@ -6,8 +6,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import com.target.targetcasestudy.R
 import com.target.targetcasestudy.data.validateCreditCard
 import com.target.targetcasestudy.databinding.DialogPaymentBinding
 
@@ -37,6 +39,18 @@ class PaymentDialogFragment : DialogFragment() {
     binding = DialogPaymentBinding.inflate(inflater, container, false)
     viewModel = ViewModelProvider(this).get(PaymentDialogViewModel::class.java)
     binding.viewModel = viewModel
+
+    setObservers()
+    return binding.root
+  }
+
+  override fun onResume() {
+    super.onResume()
+    creditCardEditBoxListener()
+  }
+
+  //Listener for edit text = credit card
+  private fun creditCardEditBoxListener() {
     binding.cardNumber.addTextChangedListener(object : TextWatcher {
       override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
       }
@@ -47,11 +61,10 @@ class PaymentDialogFragment : DialogFragment() {
       }
 
       override fun afterTextChanged(creditCardNumber: Editable) {
+        // enabled and disabled the submit button based on credit card number validation
         binding.submit.isEnabled = validateCreditCard(creditCardNumber.toString())
       }
     })
-    setObservers()
-    return binding.root
   }
 
   private fun setObservers() {
@@ -63,7 +76,11 @@ class PaymentDialogFragment : DialogFragment() {
     })
     viewModel.eventSubmit.observe(viewLifecycleOwner, { isClicked ->
       if (isClicked) {
+        if (binding.submit.isEnabled){
+          Toast.makeText(context,getString(R.string.valid_message), Toast.LENGTH_LONG).show()
+        }
         dismiss()
+        //call your methods on submit click
         viewModel.onSubmitClickComplete()
       }
     })

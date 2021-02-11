@@ -24,7 +24,6 @@
         android:layout_width="100dp"
         android:layout_height="120dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/pic"
         android:contentDescription="@string/product_image"
         app:layout_constraintBottom_toTopOf="@+id/view_underline"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,14 +78,14 @@
         android:textStyle="bold"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/aisle_button"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/or_text"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/price_text"
         app:layout_constraintTop_toTopOf="@+id/aisle_button"
         app:layout_constraintVertical_bias="0.482" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/or_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"

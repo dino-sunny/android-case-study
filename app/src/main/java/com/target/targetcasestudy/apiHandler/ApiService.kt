@@ -1,7 +1,6 @@
-package com.dino.great.apiHandler
+package com.target.targetcasestudy.apiHandler
 
 import com.target.targetcasestudy.BuildConfig
-import com.target.targetcasestudy.apiHandler.ApiFactory
 import com.target.targetcasestudy.data.DealItem
 import com.target.targetcasestudy.data.Products
 import retrofit2.Response
@@ -23,6 +22,6 @@ interface ApiService {
 
     /**
      * Get Deal*/
-    @GET("deals/{id}")
-    suspend fun getDeal(@Path("id") dealId: Int): Response<List<DealItem>?>
+//    @GET("deals/{id}")
+//    suspend fun getDeal(@Path("id") dealId: Int): Response<List<DealItem>?>
 }

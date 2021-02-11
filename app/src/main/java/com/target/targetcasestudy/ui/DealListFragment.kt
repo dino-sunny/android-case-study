@@ -75,7 +75,7 @@ class DealListFragment : Fragment() {
     binding.recyclerView.adapter = dealsAdapter
   }
 
-  //Navigate to Details with post data
+  //Navigate to Details with deal info
   private fun navigateToDetails(deal: DealItem) {
     val mData = Gson().toJson(deal)
     findNavController().navigate(

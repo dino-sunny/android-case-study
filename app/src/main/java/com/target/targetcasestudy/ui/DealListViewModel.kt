@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dino.great.apiHandler.ApiService
+import com.target.targetcasestudy.apiHandler.ApiService
 import com.target.targetcasestudy.data.DealItem
 import com.target.targetcasestudy.data.Products
 import kotlinx.coroutines.launch

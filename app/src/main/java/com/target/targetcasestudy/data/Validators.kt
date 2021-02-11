@@ -1,7 +1,5 @@
 package com.target.targetcasestudy.data
 
-import androidx.core.text.isDigitsOnly
-
 /**
  * For an explanation of how to validate credit card numbers read:
  *
