@@ -46,6 +46,7 @@ class PaymentDialogFragment : DialogFragment() {
 
   override fun onResume() {
     super.onResume()
+    //Text change listener
     creditCardEditBoxListener()
   }
 

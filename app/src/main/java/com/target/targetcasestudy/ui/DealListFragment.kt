@@ -31,7 +31,7 @@ class DealListFragment : Fragment() {
 
     setListAdapter()
     setObservers()
-
+    pullRefresh()
     return binding.root
   }
 
@@ -39,6 +39,12 @@ class DealListFragment : Fragment() {
   override fun onStart() {
     super.onStart()
     getDeals()
+  }
+
+  private fun pullRefresh() {
+    binding.swiperefresh.setOnRefreshListener {
+      getDeals()
+    }
   }
 
   //Get the posts if network connection available else .
@@ -67,6 +73,7 @@ class DealListFragment : Fragment() {
     }
     viewModel.responsePosts.observe(viewLifecycleOwner) {Products->
       Products?.let { list ->
+        binding.swiperefresh.isRefreshing = false
         binding.loader.visibility = View.INVISIBLE
         binding.noInternet.visibility = View.INVISIBLE
         binding.retryButton.visibility = View.INVISIBLE
